@@ -1,0 +1,16 @@
+{
+  "assets": [
+    {"id":"PNEU-01","name":"Pneumatic Line A","group":"PNEU","unit":"bar","min":4.0,"max":8.0,"target":6.0,"warn":7.0,"crit":7.5},
+    {"id":"HYD-02","name":"Hydraulic Power Pack","group":"HYDR","unit":"bar","min":120,"max":210,"target":160,"warn":190,"crit":200},
+    {"id":"AIR-03","name":"Mechair Air Piping","group":"AIR","unit":"m3/h","min":40,"max":110,"target":75,"warn":95,"crit":102},
+    {"id":"VAC-04","name":"Vacuum Unit","group":"VAC","unit":"kPa","min":-95,"max":-60,"target":-80,"warn":-68,"crit":-64},
+    {"id":"VAL-05","name":"OMAL Valve Bank","group":"VALV","unit":"mA","min":80,"max":240,"target":150,"warn":210,"crit":228},
+    {"id":"PMP-06","name":"Marzocchi Gear Pump","group":"PUMP","unit":"mm/s","min":0.5,"max":4.5,"target":2.2,"warn":3.6,"crit":4.1}
+  ],
+  "rules": [
+    {"id":"R1","asset":"PNEU-01","expr":"value > 7.5","severity":"CRIT","hold_s":30,"action":"ticket"},
+    {"id":"R2","asset":"HYD-02","expr":"value > 200","severity":"CRIT","hold_s":60,"action":"ticket"},
+    {"id":"R3","asset":"PMP-06","expr":"value > 4.1","severity":"CRIT","hold_s":45,"action":"ticket"},
+    {"id":"R4","asset":"*","expr":"value > warn","severity":"WARN","hold_s":15,"action":"log"}
+  ]
+}
